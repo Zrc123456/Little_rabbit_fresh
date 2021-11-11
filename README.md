@@ -1,2 +1,24 @@
-# Little_rabbit_fresh
-这个仓库用来存储vue3开发的PC端项目
+# rabbit-client-pc
+
+## Project setup
+```
+yarn install
+```
+
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
+
+### Compiles and minifies for production
+```
+yarn build
+```
+
+### Lints and fixes files
+```
+yarn lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).

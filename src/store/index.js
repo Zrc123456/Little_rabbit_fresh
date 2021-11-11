@@ -7,6 +7,7 @@ import category from "./category";
 // 引入配置persistedstate 插件(持久化)
 import createPersistedState from "vuex-persistedstate";
 export default createStore({
+  // 自动存入
   plugins: [
     createPersistedState({
       key: "rabbit-client-pc",
