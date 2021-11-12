@@ -29,10 +29,10 @@ instanceWithToken.interceptors.response.use(
     if (error.response.status == 401) {
       router
         .push("/login")
-        .then((res) => {
+        .then(() => {
           console.log("跳转成功");
         })
-        .catch((res) => {
+        .catch(() => {
           console.log("跳转失败");
         });
       // 清除本地信息
@@ -49,10 +49,10 @@ function generateRequestConfig(url, methods, data) {
   };
 }
 // 不含token的响应拦截器
-instanceWithoutToken.interceptors.response((response) => response.data);
+instanceWithoutToken.interceptors.response.use((response) => response.data);
 // 返回携带token的请求
 export function requestWithToken(url, methods, data) {
-  instanceWithToken(generateRequestConfig(url, methods, data));
+  return instanceWithToken(generateRequestConfig(url, methods, data));
 }
 // 用于发送普通请求
 export function requestWithoutToken(url, method, data) {

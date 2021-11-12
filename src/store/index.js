@@ -3,7 +3,7 @@ import { createStore } from "vuex";
 
 import user from "@/store/user";
 import cart from "@/store/cart";
-import category from "./category";
+import category from "@/store/category";
 // 引入配置persistedstate 插件(持久化)
 import createPersistedState from "vuex-persistedstate";
 export default createStore({
