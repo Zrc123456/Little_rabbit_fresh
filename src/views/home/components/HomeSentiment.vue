@@ -1,41 +1,37 @@
 <template>
-  <div>
-    <HomePanel title="人气推荐" subTitle="人气爆款 不容错过">
-      <template v-slot:default>
-        <ul class="sentiment-list" v-if="sentiment">
-          <li v-for="item in sentiment" :key="item.id">
-            <RouterLink to="/">
-              <img :src="item.picture" alt="" />
-              <p class="name ellipsis">{{ item.title }}</p>
-              <p class="title">{{ item.alt }}</p>
-            </RouterLink>
-          </li>
-        </ul>
-      </template>
-    </HomePanel>
-  </div>
+  <HomePanel title="人气推荐" subTitle="人气爆款 不容错过" ref="target">
+    <template v-slot:default>
+      <ul class="sentiment-list" v-if="sentiment">
+        <li v-for="item in sentiment" :key="item.id">
+          <RouterLink to="/">
+            <img :src="item.picture" alt="" />
+            <p class="name ellipsis">{{ item.title }}</p>
+            <p class="title">{{ item.alt }}</p>
+          </RouterLink>
+        </li>
+      </ul>
+      <HomeSkeleton v-else />
+    </template>
+  </HomePanel>
 </template>
 
 <script>
 import HomePanel from "./HomePanel.vue";
 import { getSentment } from "@/api/home/";
-import { ref } from "vue";
+import useLazyData from "@/hooks/useLazyData";
+import HomeSkeleton from "@/views/home/components/HomeSkeleton.vue";
+
 export default {
   setup() {
-    const sentiment = ref();
-    const getSentmentList = () => {
-      getSentment().then((res) => {
-        console.log(res);
-        sentiment.value = res.result;
-      });
-    };
-    getSentmentList();
+    const { target, result: sentiment } = useLazyData(getSentment);
     return {
+      target,
       sentiment,
     };
   },
   components: {
     HomePanel,
+    HomeSkeleton,
   },
 };
 </script>

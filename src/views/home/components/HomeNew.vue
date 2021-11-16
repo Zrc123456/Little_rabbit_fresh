@@ -1,8 +1,8 @@
 <template>
-  <HomePanel title="新鲜好物" subTitle="新鲜出炉 品质靠谱">
+  <HomePanel title="新鲜好物" subTitle="新鲜出炉 品质靠谱" ref="target">
     <template v-slot:right>
       <!-- 查看全部-->
-      <Xtxmore />
+      <XtxMore />
     </template>
     <template v-slot:default>
       <ul class="goods-list" v-if="homeNew">
@@ -14,35 +14,36 @@
           </RouterLink>
         </li>
       </ul>
+      <HomeSkeleton v-else />
     </template>
   </HomePanel>
 </template>
 
 <script>
 import HomePanel from "./HomePanel.vue";
-import Xtxmore from "@/components/library/Xtxmore.vue";
-import { ref } from "vue";
+import XtxMore from "@/components/library/XtxMore.vue";
 import { getNewGoods } from "@/api/home";
-
+import useLazyData from "@/hooks/useLazyData";
+import HomeSkeleton from "@/views/home/components/HomeSkeleton.vue";
 export default {
   setup() {
-    const homeNew = ref();
-    const getData = () => {
-      getNewGoods().then((res) => {
-        homeNew.value = res.result;
-      });
-    };
-    getData();
+    /**
+     * @target 需要监听的对象
+     * @result 返回值
+     */
+    const { target, result: homeNew } = useLazyData(getNewGoods);
     return {
       homeNew,
-      getData,
+      target,
     };
   },
   components: {
     HomePanel,
-    Xtxmore,
+    XtxMore,
+    HomeSkeleton,
   },
 };
+// 新鲜好物
 </script>
 <style scoped lang="less">
 .goods-list {

@@ -5,6 +5,8 @@
       <HomeBanner />
       <HomeNew />
       <HomeSentiment />
+      <HomeBrand />
+      <HomeProduct />
     </div>
   </AppLayoutVue>
 </template>
@@ -19,6 +21,10 @@ import HomeBanner from "@/views/home/components/HomeBanner.vue";
 import HomeNew from "@/views/home/components/HomeNew.vue";
 // 人气推荐
 import HomeSentiment from "./components/HomeSentiment.vue";
+// 热门品牌
+import HomeBrand from "./components/HomeBrand.vue";
+// 产品区域
+import HomeProduct from "./components/HomeProduct.vue";
 export default {
   components: {
     AppLayoutVue,
@@ -26,6 +32,8 @@ export default {
     HomeBanner,
     HomeNew,
     HomeSentiment,
+    HomeBrand,
+    HomeProduct,
   },
 };
 </script>

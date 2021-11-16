@@ -31,10 +31,26 @@ export function getNewGoods(limit = 4) {
   return requestWithoutToken("/home/new", "get", { limit });
 }
 /**
- *
+ *热门品牌
  * @param {*} limit
  * @returns
  */
 export function getSentment(limit = 4) {
   return requestWithoutToken("/home/hot", "get", { limit });
+}
+/**
+ *
+ * @param {*} limit 热门推荐
+ * @returns
+ */
+//
+export function getHotBrands() {
+  return requestWithoutToken("/home/brand", "get");
+}
+/**
+ * 获取产品区块数据
+ * @return {Promise}
+ */
+export function getProducts() {
+  return requestWithoutToken("/home/goods", "get");
 }
