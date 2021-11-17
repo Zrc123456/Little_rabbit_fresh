@@ -40,6 +40,7 @@ export default {
   components: { HomePanel, HomeGoods, XtxMore },
   setup() {
     const { target, result: homeProducts } = useLazyData(getProducts);
+    // console.log(homeProducts);
     return { homeProducts, target };
   },
 };

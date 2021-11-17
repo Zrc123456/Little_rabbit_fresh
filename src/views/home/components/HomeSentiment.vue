@@ -4,7 +4,7 @@
       <ul class="sentiment-list" v-if="sentiment">
         <li v-for="item in sentiment" :key="item.id">
           <RouterLink to="/">
-            <img :src="item.picture" alt="" />
+            <img :src="item.picture" alt="" /> 
             <p class="name ellipsis">{{ item.title }}</p>
             <p class="title">{{ item.alt }}</p>
           </RouterLink>
