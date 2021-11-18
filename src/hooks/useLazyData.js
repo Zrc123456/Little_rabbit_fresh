@@ -7,7 +7,7 @@ import { useIntersectionObserver } from "@vueuse/core";
  * @return {{result: ToRef<null>, target: ToRef<null>}}
  */
 export default function useLazyData(apiFunction) {
-  console.log(1111111111111111111111111111111111111111);
+  // console.log(1111111111111111111111111111111111111111);
   // 创建元素引用对象
   const target = ref(null);
   // 存储数据

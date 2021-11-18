@@ -54,3 +54,11 @@ export function getHotBrands() {
 export function getProducts() {
   return requestWithoutToken("/home/goods", "get");
 }
+/**
+ *
+ * @param {*} limit
+ * @returns
+ */
+export function getSpecial(limit = 3) {
+  return requestWithoutToken("/home/special", "get", { limit });
+}

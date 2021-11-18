@@ -7,6 +7,7 @@
       <HomeSentiment />
       <HomeBrand />
       <HomeProduct />
+      <HomeSpecial />
     </div>
   </AppLayoutVue>
 </template>
@@ -25,6 +26,8 @@ import HomeSentiment from "./components/HomeSentiment.vue";
 import HomeBrand from "./components/HomeBrand.vue";
 // 产品区域
 import HomeProduct from "./components/HomeProduct.vue";
+// 最新专题
+import HomeSpecial from "@/views/home/components/HomeSpecial";
 export default {
   components: {
     AppLayoutVue,
@@ -34,6 +37,7 @@ export default {
     HomeSentiment,
     HomeBrand,
     HomeProduct,
+    HomeSpecial,
   },
 };
 </script>
