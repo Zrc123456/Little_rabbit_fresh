@@ -4,6 +4,7 @@ import XtxMore from "@/components/library/XtxMore.vue";
 import lazy from "@/components/directive/lazy";
 import XtxBread from "@/components/library/XtxBread.vue";
 import XtxBreadItem from "@/components/library/XtxBreadItem.vue";
+import Xtxcheckbox from "@/components/library/Xtxcheckbox";
 export default {
   install(app) {
     app.component(XtxSkeleton.name, XtxSkeleton);
@@ -11,6 +12,7 @@ export default {
     app.component(XtxMore.name, XtxMore);
     app.component(XtxBread.name, XtxBread);
     app.component(XtxBreadItem.name, XtxBreadItem);
+    app.component(Xtxcheckbox.name, Xtxcheckbox);
 
     app.directive("lazy", lazy);
   },

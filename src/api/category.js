@@ -1,3 +1,5 @@
+import { requestWithoutToken } from "@/utils/request";
+
 // 一级分类
 export const topCategories = [
   "居家",
@@ -10,3 +12,19 @@ export const topCategories = [
   "运动",
   "杂货",
 ];
+/**
+ *
+ * @param {*} id 参数id required
+ * @returns {Promise}
+ */
+export const getTopCategoryById = (id) => {
+  return requestWithoutToken("/category", "get", { id });
+};
+/**
+ *
+ * @param {*} id
+ * @returns
+ */
+export function getSubCategoryFilterById(id) {
+  return requestWithoutToken("/category/sub/filter", "get", { id });
+}

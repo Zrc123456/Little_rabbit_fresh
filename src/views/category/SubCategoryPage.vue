@@ -12,6 +12,10 @@
           </XtxBreadItem>
         </transition>
       </XtxBread>
+      <!-- 分类 -->
+      <SubFilter @onFilterChanged="onFilterChanged" />
+      <!-- 复选框 -->
+      <XtxCheckbox v-model="isCheckedData">仅显示有货商品</XtxCheckbox>
     </div>
   </AppLayout>
 </template>
@@ -21,13 +25,19 @@ import AppLayout from "@/components/AppLayout";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import { computed } from "vue";
+import SubFilter from "@/views/category/components/SubFilter.vue";
+import { ref } from "vue";
 export default {
   name: "SubCategoryPage",
-  components: { AppLayout },
+  components: { AppLayout, SubFilter },
   setup() {
     // 获取面包屑导航需要的分类数据
     const category = useBread();
-    return { category };
+    const onFilterChanged = (data) => {
+      console.log(data);
+    };
+    const isCheckedData = ref(false);
+    return { category, onFilterChanged, isCheckedData };
   },
 };
 

@@ -1,6 +1,6 @@
 <template>
   <AppLayout>
-    <div>
+    <div class="container">
       <XtxBread>
         <XtxBreadItem path="/">首页</XtxBreadItem>
         <transition name="fade-right">
@@ -16,6 +16,9 @@
           height: '500px',
         }"
       />
+      <!-- 全部分类 -->
+      <showCategoryList :subCategories="toCategory.children" />
+      <CommendGoods />
     </div>
   </AppLayout>
 </template>
@@ -26,7 +29,10 @@ import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import { computed } from "vue-demi";
 import useBanner from "@/hooks/useBanner";
-
+// 全部分类
+import showCategoryList from "./components/showCategoryList.vue";
+// 商品布局
+import CommendGoods from "@/views/category/components/CommendGoods";
 export default {
   setup() {
     const toCategory = useCategory();
@@ -41,6 +47,8 @@ export default {
   },
   components: {
     AppLayout,
+    showCategoryList,
+    CommendGoods,
   },
 };
 function useCategory() {
