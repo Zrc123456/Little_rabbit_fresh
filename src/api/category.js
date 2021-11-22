@@ -28,3 +28,9 @@ export const getTopCategoryById = (id) => {
 export function getSubCategoryFilterById(id) {
   return requestWithoutToken("/category/sub/filter", "get", { id });
 }
+
+// 获取商品列表数据的 API 函数
+export function getGoodsReq(reqParams) {
+  // console.log(params);
+  return requestWithoutToken("/category/goods", "post", reqParams);
+}

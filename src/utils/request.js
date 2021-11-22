@@ -44,7 +44,7 @@ instanceWithToken.interceptors.response.use(
 function generateRequestConfig(url, methods, data) {
   return {
     url: url,
-    methods: methods,
+    method: methods,
     [methods == "get" ? "params" : "data"]: data,
   };
 }

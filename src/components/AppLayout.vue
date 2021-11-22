@@ -19,7 +19,7 @@ export default {
     const store = useStore();
     // 调用方法获取list数据
     store.dispatch("category/getCategories");
-    console.log(store.state.category.list);
+    // console.log(store.state.category.list);
   },
   components: {
     AppTopNav,

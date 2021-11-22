@@ -11,7 +11,7 @@
           :class="{ active: item.id === filters.selectedBrandId }"
           @click="
             filter.selectedBrandId = item.id;
-            onFilterChanged();
+            updateSelectedFilters();
           "
           >{{ item.name }}</a
         >
@@ -27,7 +27,7 @@
           :key="sub.id"
           @click="
             item.selectedFilterName = sub.name;
-            onFilterChanged();
+            updateSelectedFilters();
           "
           >{{ sub.name }}</a
         >
@@ -43,10 +43,11 @@ export default {
   name: "SubFilter",
   setup(props, { emit }) {
     const route = useRoute();
-    const { filters, getData } = useSubfilter(emit);
+    const { filters, getData, updateSelectedFilters } = useSubfilter(emit);
     getData(route.params.id);
     return {
       filters,
+      updateSelectedFilters,
     };
   },
 };
@@ -69,7 +70,7 @@ function useSubfilter(emit) {
         // 设置默认选中的筛选条件的名字
         item.selectedFilterName = "全部";
       });
-      console.log(res.result);
+      // console.log(res.result);
       filters.value = res.result;
     });
   };
@@ -95,6 +96,7 @@ function useSubfilter(emit) {
         });
       }
     });
+    console.log(selectedFilters);
     emit("onFilterChanged", selectedFilters);
   };
   return {

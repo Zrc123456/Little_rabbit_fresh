@@ -48,6 +48,7 @@ export default {
       default: 3000,
     },
   },
+  // cs:go;
   setup(props) {
     const currentIndex = ref(0);
     const toggle = (step) => {
