@@ -7,8 +7,14 @@ module.exports = {
       patterns: [
         path.join(__dirname, "src", "assets", "styles", "mixin.less"),
         path.join(__dirname, "src", "assets", "styles", "variables.less"),
-        path.join(__dirname, "src", "assets", "styles", "mimix.less"),
       ],
     },
+  },
+  chainWebpack: (config) => {
+    config.module
+      .rule("images")
+      .use("url-loader")
+      .loader("url-loader")
+      .tap((options) => Object.assign(options, { limit: 10000 }));
   },
 };

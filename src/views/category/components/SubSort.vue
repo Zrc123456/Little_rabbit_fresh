@@ -46,8 +46,16 @@
       </a>
     </div>
     <div class="check">
-      <XtxCheckbox>仅显示有货商品</XtxCheckbox>
-      <XtxCheckbox>仅显示特惠商品</XtxCheckbox>
+      <XtxCheckbox
+        v-model="sortParams.onlyDiscount"
+        @update:modelValue="updateSortParams({ onlyDiscount: $event })"
+        >仅显示有货商品</XtxCheckbox
+      >
+      <XtxCheckbox
+        @update:modelValue="updateSortParams({ inventory: $event })"
+        v-model="sortParams.inventory"
+        >仅显示特惠商品</XtxCheckbox
+      >
     </div>
   </div>
 </template>
@@ -75,6 +83,7 @@ function useSort(emit) {
     onlyDiscount: false,
   });
   const updateSortParams = (target) => {
+    console.log(target);
     sortParams.value = {
       ...sortParams.value,
       ...target,
