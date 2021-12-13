@@ -7,6 +7,9 @@ import XtxBreadItem from "@/components/library/XtxBreadItem.vue";
 import Xtxcheckbox from "@/components/library/Xtxcheckbox";
 import XtxInfiniteLoading from "@/components/library/XtxInfiniteLoading";
 import XtxCity from "@/components/library/XtxCity";
+import XtxButton from "@/components/library/XtxButton";
+import XtxNumberBox from "@/components/library/XtxNumberBox";
+import XtxPagination from "@/components/library/XtxPagination";
 export default {
   install(app) {
     app.component(XtxSkeleton.name, XtxSkeleton);
@@ -17,6 +20,9 @@ export default {
     app.component(Xtxcheckbox.name, Xtxcheckbox);
     app.component(XtxInfiniteLoading.name, XtxInfiniteLoading);
     app.component(XtxCity.name, XtxCity);
+    app.component(XtxButton.name, XtxButton);
+    app.component(XtxNumberBox.name, XtxNumberBox);
+    app.component(XtxPagination.name, XtxPagination);
     app.directive("lazy", lazy);
   },
 };

@@ -20,24 +20,46 @@
             <GoodsSales />
           </div>
           <!-- 右侧 -->
-          <div class="spec">
+          <div class="spec" v-if="goodsDetail">
             <GoodsInfo :goodsDetail="goodsDetail" />
             <!-- 规格组件 skuId="1369155865461919746" -->
-            <GoodsSku :skus="goodsDetail.skus" :specs="goodsDetail.specs" />
+            <GoodsSku
+              @onSpecChanged="onSpecChanged"
+              :skus="goodsDetail.skus"
+              :specs="goodsDetail.specs"
+            />
+            <!-- 商品数量选择组件 -->
+            <XtxNumberBox
+              label="数量"
+              v-model="goodsCount"
+              :max="goodsDetail.inventory"
+            />
+            <!-- 加入购物车 -->
+            <XtxButton type="primary" style="margin-top: 15px"
+              >加入购物车</XtxButton
+            >
           </div>
         </div>
         <!-- 商品推荐 -->
         <GoodsRelevant></GoodsRelevant>
         <!-- 商品详情 -->
-        <div class="goods-footer">
+        <div class="goods-footer" v-if="goodsDetail">
           <div class="goods-article">
             <!-- 商品+评价 -->
-            <div class="goods-tabs"></div>
+            <div class="goods-tabs">
+              <GoodsTab />
+            </div>
             <!-- 注意事项 -->
-            <div class="goods-warn"></div>
+            <div class="goods-warn">
+              <GoodsWarn />
+            </div>
           </div>
           <!-- 24热榜 -->
-          <div class="goods-aside"></div>
+          <div class="goods-aside">
+            <GoodsHot :type="1"></GoodsHot>
+            <GoodsHot :type="2"></GoodsHot>
+            <GoodsHot :type="3"></GoodsHot>
+          </div>
         </div>
       </div>
     </div>
@@ -47,13 +69,17 @@
 <script>
 import GoodsRelevant from "@/views/goods/components/GoodsRelevant";
 import AppLayout from "@/components/AppLayout";
-import { ref } from "vue";
+import { provide, ref } from "vue";
 import { getGoodsDetailById } from "@/api/goods";
 import { useRoute } from "vue-router";
 import GoodsImages from "./components/GoodsImages.vue";
 import GoodsSales from "./components/GoodsSales.vue";
 import GoodsInfo from "./components/GoodsInfo.vue";
 import GoodsSku from "./components/GoodsSku.vue";
+import GoodsTab from "./components/GoodsTab.vue";
+import GoodsHot from "./components/GoodsHot.vue";
+import GoodsWarn from "@/views/goods/components/GoodsWarn";
+
 export default {
   name: "GoodsDetailPage",
   components: {
@@ -63,13 +89,28 @@ export default {
     GoodsImages,
     GoodsSales,
     GoodsInfo,
+    GoodsTab,
+    GoodsHot,
+    GoodsWarn,
   },
   setup() {
     const router = useRoute();
     const { goodsDetail, getGoodsDetail } = useGoodsDetail();
+    // 用于存储用户选择的商品数量
+    const goodsCount = ref(1);
     getGoodsDetail(router.params.id);
+    // 当用户选择完整的规格以后 更新视图
+    const onSpecChanged = (data) => {
+      goodsDetail.value.price = data.price;
+      goodsDetail.value.oldPrice = data.oldPrice;
+      goodsDetail.value.inventory = data.inventory;
+    };
+    // 将数据开放到子组件
+    provide("goodsDetail", goodsDetail);
     return {
       goodsDetail,
+      onSpecChanged,
+      goodsCount,
     };
   },
 };
@@ -79,7 +120,7 @@ function useGoodsDetail() {
   const getGoodsDetail = (id) => {
     getGoodsDetailById(id).then((res) => {
       goodsDetail.value = res.result;
-      console.log(goodsDetail.value);
+      // console.log(goodsDetail.value);
     });
   };
   return {
