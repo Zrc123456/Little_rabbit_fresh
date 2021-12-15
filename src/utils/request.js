@@ -5,7 +5,7 @@ import axios from "axios";
 // 基准路径
 // 线上环境: https://apipc-xiaotuxian-front.itheima.net/
 // 开发环境: http://pcapi-xiaotuxian-front-devtest.itheima.net/
-export const baseURL = "https://apipc-xiaotuxian-front.itheima.net/";
+export const baseURL = "http://pcapi-xiaotuxian-front-devtest.itheima.net/";
 // 创建请求实例对象 (不包含token)
 const instanceWithoutToken = axios.create({ baseURL });
 // 创建请求实例对象 (包含token)
