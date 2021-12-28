@@ -7,7 +7,7 @@ export default {
   setup() {},
 };
 </script>
-<style lang="less">
+<style lang="less" scoped>
 .box {
   color: @xtxColor;
 }
